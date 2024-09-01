@@ -1,4 +1,4 @@
-package bin
+package cmd
 
 import (
 	"flag"

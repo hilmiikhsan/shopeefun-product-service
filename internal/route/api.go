@@ -2,11 +2,20 @@ package route
 
 import (
 	"github.com/gofiber/fiber/v2"
+	handlerProduct "github.com/hilmiikhsan/shopeefun-product-service/internal/module/product/handler/rest"
+	handlerShop "github.com/hilmiikhsan/shopeefun-product-service/internal/module/shop/handler/rest"
 	"github.com/hilmiikhsan/shopeefun-product-service/pkg/response"
 	"github.com/rs/zerolog/log"
 )
 
 func SetupRoutes(app *fiber.App) {
+	var (
+		api = app.Group("/api/v1")
+	)
+
+	handlerShop.NewShopHandler().Register(api)
+	handlerProduct.NewProductHandler().Register(api)
+
 	// fallback route
 	app.Use(func(c *fiber.Ctx) error {
 		var (
