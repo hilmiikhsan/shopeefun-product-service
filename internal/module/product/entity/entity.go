@@ -51,7 +51,7 @@ type ProductRequest struct {
 	MinPrice string `query:"min_price" validate:"omitempty,numeric"`
 	MaxPrice string `query:"max_price" validate:"omitempty,numeric"`
 	Brand    string `query:"brand" validate:"omitempty,alpha"`
-	Rating   int    `query:"rating" validate:"omitempty,min=1,max=5"`
+	Rating   string `query:"rating" validate:"omitempty,numeric"`
 	Name     string `query:"name" validate:"omitempty"`
 }
 

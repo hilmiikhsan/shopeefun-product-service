@@ -67,6 +67,7 @@ func (r *productRepository) GetProducts(ctx context.Context, req *entity.Product
 
 	resp.Items = make([]entity.ProductItem, 0, req.Paginate)
 	var minPrice, maxPrice float64
+	var rating int64
 	var err error
 
 	if req.MinPrice != "" {
@@ -81,6 +82,14 @@ func (r *productRepository) GetProducts(ctx context.Context, req *entity.Product
 		maxPrice, err = strconv.ParseFloat(req.MaxPrice, 64)
 		if err != nil {
 			log.Error().Err(err).Any("payload", req).Msg("repository::GetProducts - Failed to parse max price")
+			return nil, err
+		}
+	}
+
+	if req.Rating != "" {
+		rating, err = strconv.ParseInt(req.Rating, 10, 64)
+		if err != nil {
+			log.Error().Err(err).Any("payload", req).Msg("repository::GetProducts - Failed to parse rating")
 			return nil, err
 		}
 	}
@@ -101,7 +110,7 @@ func (r *productRepository) GetProducts(ctx context.Context, req *entity.Product
 		query += " AND brand = :brand"
 	}
 
-	if req.Rating > 0 {
+	if rating > 0 {
 		query += " AND rating >= :rating"
 	}
 
