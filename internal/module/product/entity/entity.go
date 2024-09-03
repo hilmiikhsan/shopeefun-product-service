@@ -41,11 +41,18 @@ type ProductItem struct {
 	Category    string  `json:"category" db:"category"`
 	Price       float64 `json:"price" db:"price"`
 	Stock       int     `json:"stock" db:"stock"`
+	Rating      int     `json:"rating" db:"rating"`
 }
 
 type ProductRequest struct {
-	Page     int `query:"page" validate:"required"`
-	Paginate int `query:"paginate" validate:"required"`
+	Page     int    `query:"page" validate:"required,min=1"`
+	Paginate int    `query:"paginate" validate:"required,min=1,max=100"`
+	Category string `query:"category" validate:"omitempty,alpha"`
+	MinPrice string `query:"min_price" validate:"omitempty,numeric"`
+	MaxPrice string `query:"max_price" validate:"omitempty,numeric"`
+	Brand    string `query:"brand" validate:"omitempty,alpha"`
+	Rating   int    `query:"rating" validate:"omitempty,min=1,max=5"`
+	Name     string `query:"name" validate:"omitempty"`
 }
 
 type ProductsResponse struct {

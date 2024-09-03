@@ -9,5 +9,5 @@ type GetProductResult struct {
 	Stock       int     `db:"stock"`
 	ShopId      string  `db:"shop_id"`
 	ShopName    string  `db:"shop_name"`
-	ShopRating  float64 `db:"shop_rating"`
+	ShopRating  int     `db:"shop_rating"`
 }

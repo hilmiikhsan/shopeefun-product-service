@@ -29,18 +29,17 @@ const (
 	`
 
 	queryGetProducts = `
-	SELECT
-		COUNT(id) OVER() as total_data,
-		id,
-		name,
-		description,
-		category,
-		price,
-		stock
-	FROM products
-	WHERE
-		deleted_at IS NULL
-	LIMIT ? OFFSET ?
+		SELECT
+			COUNT(id) OVER() as total_data,
+			id,
+			name,
+			description,
+			category,
+			price,
+			stock,
+			rating
+		FROM products
+		WHERE deleted_at IS NULL
 	`
 
 	queryUpdateProduct = `

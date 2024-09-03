@@ -60,9 +60,9 @@ func (r *ShopsRequest) SetDefault() {
 }
 
 type ShopItem struct {
-	Id     string  `json:"id" db:"shop_id"`
-	Name   string  `json:"name" db:"shop_name"`
-	Rating float64 `json:"rating" db:"shop_rating"`
+	Id     string `json:"id" db:"shop_id"`
+	Name   string `json:"name" db:"shop_name"`
+	Rating int    `json:"rating" db:"shop_rating"`
 }
 
 type ShopsResponse struct {
